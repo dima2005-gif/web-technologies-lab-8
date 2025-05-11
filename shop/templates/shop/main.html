@@ -1,0 +1,43 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %}Головна{% endblock %}
+
+{% block content %}
+
+<h2>Товари</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Назва</th>
+            <th>Категорія</th>
+            <th>Ціна</th>
+            <th>Кількість</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.title }}</td>
+            <td>{{ product.category.title }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.product_qty }}</td>
+            <td><button>Купити</button></td>
+            <td>
+                <form action="{% url 'read_product' product.id %}" method="get">
+                    <button>Детально</button>
+            </td>
+            </form>
+        {% endfor %}
+    </tbody>
+</table>
+<form action="{% url 'create_product' %}" method="get">
+    <button type="submit" class="btn btn-primary">Додати новий продукт</button>
+</form>
+<form action="{% url 'create_category' %}" method="get">
+    <button type="submit" class="btn btn-primary">Додати нову категорію</button>
+</form>
+<form action="{% url 'category_list' %}" method="get">
+    <button type="submit" class="btn btn-primary">Категорії</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+<h1>{{ category.title }}</h1>
+
+<form action="{% url 'main_page' %}" method="get">
+    <button type="submit" class="btn btn-primary">Повернутися до списку товарів</button>
+</form>
+<form action="{% url 'update_category' category.id %}" method="get">
+    <button type="submit" class="btn btn-warning">Редагувати категорію</button>
+</form>
+<form action="{% url 'delete_category' category.id %}" method="post" onsubmit="return confirm('Ви впевнені, що хочете видалити цю категорію?');">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Видалити категорію</button>
+</form>

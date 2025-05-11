@@ -1,0 +1,19 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %}Додати категорію{% endblock %}
+
+{% block content %}
+<h2>Додати нову категорію</h2>
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="title">Назва:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    <button type="submit">Додати категорію</button>
+</form>
+<form action="{% url 'main_page' %}" method="get">
+    <button type="submit" class="btn btn-primary">Повернутися до списку товарів</button>
+</form>
+
+{% endblock %}

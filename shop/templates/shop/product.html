@@ -14,7 +14,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for product in products %}
+            {% for product in page_obj %}
             <tr>
                 <td>{{ product.title }}</td>
                 <td>{{ product.category }}</td>
@@ -25,4 +25,18 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">Перша</a>
+            <a href="?page={{ page_obj.previous_page_number }}">Попередня</a>
+        {% endif %}
+
+        <span>Cторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Наступна</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Остання</a>
+        {% endif %}
+    </div>
 {% endblock %}

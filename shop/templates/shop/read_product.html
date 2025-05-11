@@ -1,0 +1,15 @@
+<h1>{{ product.title }}</h1>
+<p>Ціна: {{ product.price }}</p>
+<p>Кількість: {{ product.product_qty }}</p>
+<p>Категорія: {{ product.category.title }}</p>
+<form action="{% url 'main_page' %}" method="get">
+    <button type="submit" class="btn btn-primary">Повернутися до списку товарів</button>
+</form>
+<form action="{% url 'update_product' product.id %}" method="post">
+     {% csrf_token %}
+     <button type="submit">Редагувати</button>
+</form>
+<form action="{% url 'delete_product' product.id %}" method="post" onsubmit="return confirm('Ви впевнені, що хочете видалити цей товар?');">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-danger">Видалити товар</button>
+</form>

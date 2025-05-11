@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 
 # Create your models here.
 class Category(models.Model):
@@ -7,6 +8,11 @@ class Category(models.Model):
     
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = 'Категорія'
+        verbose_name_plural = 'Категорії'
+        ordering = ['title']
 
 class Product(models.Model):
     title = models.CharField(max_length=250)
@@ -15,6 +21,12 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    
+    slug = models.SlugField(default='', null=False)
+ 
     def __str__(self):
         return self.title
+    
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товари'
+        ordering = ['title']

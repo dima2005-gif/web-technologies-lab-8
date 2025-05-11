@@ -1,0 +1,38 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %}Редагувати товар{% endblock %}
+
+{% block content %}
+<h2>Редагувати товар: {{ product.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <div>
+        <label for="title">Назва:</label>
+        <input type="text" id="title" name="title" value="{{ product.title }}" required>
+    </div>
+    
+    <div>
+        <label for="category">Категорія:</label>
+        <select id="category" name="category" required>
+            {% for category in categories %}
+                <option value="{{ category.id }}" {% if category.id == product.category.id %}selected{% endif %}>
+                    {{ category.title }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div>
+        <label for="price">Ціна:</label>
+        <input type="number" id="price" name="price" value="{{ product.price }}" required>
+    </div>
+    
+    <div>
+        <label for="product_qty">Кількість:</label>
+        <input type="number" id="product_qty" name="product_qty" value="{{ product.product_qty }}" required>
+    </div>
+    
+    <button type="submit" class="btn btn-success">Оновити</button>
+</form>
+{% endblock %}

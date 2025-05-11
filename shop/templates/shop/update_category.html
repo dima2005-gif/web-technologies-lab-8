@@ -1,0 +1,16 @@
+{% extends 'shop/layout.html' %}
+
+{% block title %}Редагувати категорію{% endblock %}
+
+{% block content %}
+<h2>Редагувати категорію: {{ category.title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <div>
+        <label for="title">Назва:</label>
+        <input type="text" id="title" name="title" value="{{ category.title }}" required>
+    </div>
+    <button type="submit" class="btn btn-success">Оновити</button>
+</form>
+{% endblock %}
